@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Answer{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Add Answer for "{{ question.question_text }}"</h2>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ answer_form.text.label_tag }}  
+            {{ answer_form.text }}  
+        </div>
+
+        <div class="mb-3">
+            {{ answer_form.is_correct.label_tag }}  
+            {{ answer_form.is_correct }}  
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Answer</button>
+        <a href="{% url 'question:question_detail' question.pk %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
